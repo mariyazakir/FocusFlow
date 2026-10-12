@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#6855e8">
+  <meta name="description" content="A calm, local-first planner for your study, work, and life.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/mobile.css">
+  <link rel="stylesheet" href="/legal.css">
+  <title>FocusFlow</title>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#overview" aria-label="FocusFlow home"><span class="brand-icon">✦</span><span><b>FocusFlow</b><small>Make room for what matters.</small></span></a>
+      <nav id="navigation" aria-label="Main navigation">
+        <button data-page="overview" class="nav-item active">⌂ <span>Overview</span></button>
+        <button data-page="tasks" class="nav-item">☷ <span>My tasks</span></button>
+        <button data-page="calendar" class="nav-item">▦ <span>Calendar</span></button>
+        <button data-page="planner" class="nav-item">◷ <span>Plan my day</span></button>
+        <button data-page="board" class="nav-item">▤ <span>Board</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <label class="theme-control">Appearance
+          <select id="themeSelect" aria-label="Appearance"><option value="dark">Dark</option><option value="light">Light</option></select>
+        </label>
+        <button class="button secondary full" id="installButton" hidden>Install FocusFlow</button>
+        <button class="button primary full" id="sidebarAdd">＋ Add a task</button>
+        <div class="local-note">Your tasks stay in this browser. Export a backup to move them to another device.</div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="mobile-header"><a class="brand compact" href="#overview"><span class="brand-icon">✦</span><b>FocusFlow</b></a><div class="mobile-head-actions"><button class="button secondary" id="mobileTheme" aria-label="Switch theme">☼</button><button class="button secondary" id="installMobile" hidden aria-label="Install FocusFlow">Install</button><button class="button primary" id="mobileAdd">＋ Add</button></div></header>
+      <nav class="mobile-nav" aria-label="Main navigation"><button data-page="overview" class="nav-item active">⌂ Overview</button><button data-page="tasks" class="nav-item">☷ Tasks</button><button data-page="calendar" class="nav-item">▦ Calendar</button><button data-page="planner" class="nav-item">◷ Plan</button><button data-page="board" class="nav-item">▤ Board</button></nav>
+      <section id="view" aria-live="polite"></section>
+      <footer class="app-footer"><button class="text-button" id="exportButton">Export backup</button><label class="text-button import-label">Import backup<input id="importInput" type="file" accept="application/json,.json" hidden></label><a class="text-button" href="/terms.html">Terms of Use</a><a class="text-button" href="/privacy.html">Privacy Policy</a><span>Free · Private to this browser · Works offline</span></footer>
+    </main>
+  </div>
+
+  <dialog id="taskDialog" class="modal">
+    <form id="taskForm" method="dialog">
+      <div class="modal-head"><div><span class="eyebrow" id="formEyebrow">NEW TASK</span><h2 id="formTitle">Add a task</h2></div><button class="icon-button" type="button" id="closeDialog" aria-label="Close">×</button></div>
+      <input type="hidden" name="id">
+      <label>Task name<input name="title" required maxlength="120" placeholder="e.g. Finish database assignment"></label>
+      <label>Notes<textarea name="description" rows="3" placeholder="Add a little context"></textarea></label>
+      <div class="form-grid">
+        <label>Category<select name="category"><option>MCA</option><option>Side Income</option><option>BUD</option><option>Personal</option></select></label>
+        <label>Priority<select name="priority"><option>Medium</option><option>High</option><option>Low</option></select></label>
+        <label>Deadline<input type="date" name="due_date"></label>
+        <label>Focus time (minutes)<input type="number" name="estimated_minutes" min="5" max="1440" step="5" value="45"></label>
+        <label>Status<select name="status"><option>To do</option><option>In progress</option><option>Done</option></select></label>
+        <label>Repeat<select name="recurring"><option>Never</option><option>Daily</option><option>Weekly</option><option>Monthly</option></select></label>
+      </div>
+      <div class="modal-actions"><button type="button" class="button secondary" id="cancelDialog">Cancel</button><button type="submit" class="button primary">Save task</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="consentDialog" class="modal consent-modal" aria-labelledby="consentTitle">
+    <div class="modal-head"><div><span class="eyebrow">FIRST VISIT</span><h2 id="consentTitle">Welcome to FocusFlow</h2></div></div>
+    <p class="consent-copy">Before using the app, read and accept the Terms of Use and acknowledge the Privacy Policy. Your tasks stay in this browser; the hosting provider may receive basic connection information.</p>
+    <label class="consent-check"><input id="termsConsent" type="checkbox"><span>I agree to the <a href="/terms.html" target="_blank" rel="noopener">Terms of Use</a>.</span></label>
+    <label class="consent-check"><input id="privacyConsent" type="checkbox"><span>I have read and acknowledge the <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
+    <button id="acceptConsent" class="button primary full" disabled>Agree and continue</button>
+    <small class="consent-copy">Your choice and policy version are saved in this browser. If you do not agree, close this page.</small>
+  </dialog>
+
+  <div id="toast" class="toast" role="status"></div>
+  <div id="printArea" aria-hidden="true"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

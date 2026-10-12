@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.venv/
+focusflow.db
+focusflow-backup.json
+tests/test-*.db
+.streamlit/secrets.toml

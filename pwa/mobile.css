@@ -1,0 +1,8 @@
+.mobile-nav{display:none}
+.mobile-head-actions{display:flex;align-items:center;gap:6px}
+@media(max-width:700px){
+  .mobile-nav{display:flex;position:sticky;top:54px;z-index:4;overflow-x:auto;gap:4px;padding:3px 0 10px;background:var(--bg);scrollbar-width:none}
+  .mobile-nav::-webkit-scrollbar{display:none}
+  .mobile-nav .nav-item{display:block;flex:none;white-space:nowrap;font-size:12px;padding:8px 10px}
+}
+@media(min-width:701px){.mobile-nav{display:none!important}}
