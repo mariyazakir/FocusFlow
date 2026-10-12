@@ -1,5 +1,5 @@
-const CACHE_NAME = "focusflow-shell-v3";
-const SHELL = ["/", "/index.html", "/styles.css", "/mobile.css", "/legal.css", "/app.js", "/terms.html", "/privacy.html", "/manifest.webmanifest", "/icons/icon.svg", "/icons/icon-192.png", "/icons/icon-512.png"];
+const CACHE_NAME = "focusflow-shell-v4";
+const SHELL = ["/", "/index.html", "/styles.css", "/mobile.css", "/legal.css", "/legal-consent.js", "/app.js", "/terms.html", "/privacy.html", "/manifest.webmanifest", "/icons/icon.svg", "/icons/icon-192.png", "/icons/icon-512.png"];
 
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));

@@ -14,7 +14,7 @@ A free, local-first task planner for college assignments, side-income work, BUD 
 - Monthly calendar, local due/overdue reminders, and an offline day planner ranked by priority and deadline
 - Local starter checklists for breaking tasks into steps (no AI account or paid API)
 - Responsive layouts for desktop, tablet, and phone-sized screens
-- First-use agreement screen and Terms of Use / Privacy Policy pages in the sidebar
+- First-use Terms of Use / Privacy Policy agreement and 18+ self-attestation gate
 
 ## Public installable web edition
 
@@ -60,6 +60,12 @@ With the virtual environment active, run:
 py -m unittest discover -s tests -v
 ```
 
+The PWA age/consent helper can also be checked with Node.js:
+
+```powershell
+node --test pwa/test_legal_consent.cjs
+```
+
 ## Your data
 
 The app creates `focusflow.db` beside `app.py` the first time it runs. Back up this file to keep your tasks. Deleting it resets the local task list. FocusFlow uses system fonts and works without an internet connection after its Python packages are installed.
@@ -70,6 +76,6 @@ Permanent daily tasks reset to **To do** when FocusFlow is opened on a new day. 
 
 ## Legal pages and first-use agreement
 
-The draft Terms of Use and Privacy Policy are in `TERMS_OF_USE.md` and `PRIVACY_POLICY.md`. FocusFlow shows both in a required first-use dialog and keeps links in the sidebar. Consent is stored with a version and timestamp in the local SQLite settings table; a new policy version prompts for agreement again. The PWA has matching pages and stores its consent record in that browser.
+The Terms of Use and Privacy Policy are in `TERMS_OF_USE.md` and `PRIVACY_POLICY.md`. Both are shown in a required first-use dialog. Acceptance, its version and timestamp, and the 18+ self-attestation are stored locally in SQLite or browser storage. A new policy version requires acceptance again. The adult checkbox is an attestation only, not age or identity verification.
 
-**Before sharing or deploying publicly:** replace every bracketed operator name, contact email, and governing-location placeholder in both policy files. Verify the descriptions against the final hosting configuration and have local counsel review them. No policy can guarantee immunity from legal responsibility. The Python/SQLite edition is designed for local, single-device use; deploy the static PWA for the public Vercel edition.
+**Launch status:** do not deploy this release for under-18 users. FocusFlow does not yet have a verifiable parent/guardian consent system. Under-18 access must remain unavailable until a suitable verification service and consent flow are implemented and legally reviewed. The policy drafts should also be reviewed by qualified counsel before public launch. No policy can guarantee immunity from legal responsibility. The Python/SQLite edition is designed for local, single-device use; Vercel serves only the separate static PWA.

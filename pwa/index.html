@@ -62,15 +62,18 @@
 
   <dialog id="consentDialog" class="modal consent-modal" aria-labelledby="consentTitle">
     <div class="modal-head"><div><span class="eyebrow">FIRST VISIT</span><h2 id="consentTitle">Welcome to FocusFlow</h2></div></div>
-    <p class="consent-copy">Before using the app, read and accept the Terms of Use and acknowledge the Privacy Policy. Your tasks stay in this browser; the hosting provider may receive basic connection information.</p>
+    <p class="consent-copy">Before using the app, read and accept the Terms of Use and acknowledge the Privacy Policy. This release is only for people aged 18 or older. Your tasks stay in this browser; the hosting provider may receive basic connection information.</p>
     <label class="consent-check"><input id="termsConsent" type="checkbox"><span>I agree to the <a href="/terms.html" target="_blank" rel="noopener">Terms of Use</a>.</span></label>
     <label class="consent-check"><input id="privacyConsent" type="checkbox"><span>I have read and acknowledge the <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
+    <label class="consent-check"><input id="adultConsent" type="checkbox"><span>I confirm that I am 18 years of age or older.</span></label>
+    <small class="consent-copy">Under-18 access is unavailable. The age confirmation is a self-attestation, not age or guardian verification. FocusFlow does not yet have a verifiable parent/guardian consent system.</small>
     <button id="acceptConsent" class="button primary full" disabled>Agree and continue</button>
     <small class="consent-copy">Your choice and policy version are saved in this browser. If you do not agree, close this page.</small>
   </dialog>
 
   <div id="toast" class="toast" role="status"></div>
   <div id="printArea" aria-hidden="true"></div>
+  <script src="/legal-consent.js" defer></script>
   <script src="/app.js" defer></script>
 </body>
 </html>

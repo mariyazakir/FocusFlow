@@ -12,7 +12,11 @@ py -m http.server 8000
 
 Open <http://localhost:8000>. Keep the terminal open. Service workers work on `localhost` for development; installing to phones requires the deployed HTTPS address.
 
-## Deploy on Vercel
+## Deployment readiness
+
+**Do not deploy this version for use by anyone under 18.** The current age screen asks users to self-attest; it does not verify age, identity, or parent/guardian consent. A verifiable guardian-consent service has not been implemented. Do not enable under-18 access until a suitable verification method, backend, updated privacy notice, and legal review are in place. The current adult-only build is not a substitute for those controls.
+
+## Deploy on Vercel after review
 
 1. Create or sign in to a Vercel account and put this `pwa` folder in a Git repository you can connect to Vercel.
 2. In Vercel, choose **Add New → Project** and import that repository.
@@ -26,7 +30,7 @@ The free Vercel Hobby plan is for personal, non-commercial use under Vercel's cu
 
 The PWA stores tasks in the current browser's `localStorage`. Each visitor gets a separate private task list without registering. No task data is sent to Vercel. Data does not automatically sync to another browser or phone, and clearing browser data can remove it, so use **Export backup** regularly. Choose **Import backup** on the other device to restore it.
 
-The first visit requires accepting the Terms of Use and acknowledging the Privacy Policy. Both pages are linked from the footer and the agreement dialog. Consent version and timestamp are stored in the browser. Review and complete the policy placeholders in `../TERMS_OF_USE.md` and `../PRIVACY_POLICY.md` before public release, then run `py build_legal_pages.py` from the parent project folder to regenerate `terms.html` and `privacy.html`. The policies must match the final deployment and hosting setup.
+The first visit requires accepting the Terms of Use, acknowledging the Privacy Policy, and confirming the user is at least 18. The consent version, timestamp, and age self-attestation are stored in the browser. This is an adult-use gate only, not a verifiable guardian-consent mechanism. Run `py build_legal_pages.py` from the parent project folder to regenerate `terms.html` and `privacy.html` after editing the shared policy documents. Confirm policies match the final deployment and hosting setup before public release.
 
 To migrate from the local Python/SQLite app, run `py export_focusflow.py` from the parent `FocusFlow` folder. Then open the deployed PWA and import the generated `focusflow-backup.json` file.
 

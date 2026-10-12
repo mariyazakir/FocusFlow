@@ -11,12 +11,12 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 from database import CATEGORIES, PRIORITIES, STATUSES, TaskStore
+from legal import LEGAL_VERSION, can_accept_for_adult_release
 from planner import breakdown_for, build_day_plan
 
 
 APP_DIR = Path(__file__).resolve().parent
 DB_PATH = APP_DIR / "focusflow.db"
-LEGAL_VERSION = "2026-10-12-v1"
 LEGAL_VERSION_SETTING = "legal_accepted_version"
 st.set_page_config(page_title="FocusFlow", page_icon="🎯", layout="wide", initial_sidebar_state="expanded")
 
@@ -33,17 +33,20 @@ def read_policy(filename: str) -> str:
 
 @st.dialog("Before you start using FocusFlow", width="large", dismissible=False)
 def first_use_consent(store: TaskStore) -> None:
-    st.write("Please review both documents. You must affirmatively agree to continue.")
+    st.write("Please review both documents. This release is only for people aged 18 or older.")
+    st.warning("Under-18 access is not available. FocusFlow does not yet verify parental or guardian consent; the age confirmation below is a self-attestation only.")
     with st.expander("Read the Terms of Use", expanded=True):
         st.markdown(read_policy("TERMS_OF_USE.md"))
     terms_agreed = st.checkbox("I agree to the FocusFlow Terms of Use", key=f"terms_consent_{LEGAL_VERSION}")
     with st.expander("Read the Privacy Policy"):
         st.markdown(read_policy("PRIVACY_POLICY.md"))
     privacy_acknowledged = st.checkbox("I have read and acknowledge the FocusFlow Privacy Policy", key=f"privacy_consent_{LEGAL_VERSION}")
+    adult_confirmed = st.checkbox("I confirm that I am 18 years of age or older", key=f"adult_consent_{LEGAL_VERSION}")
     st.caption("Your acceptance record is saved on this device. Do not continue if you do not agree.")
-    if st.button("Agree and continue", type="primary", use_container_width=True, disabled=not (terms_agreed and privacy_acknowledged)):
+    if st.button("Agree and continue", type="primary", use_container_width=True, disabled=not can_accept_for_adult_release(terms_agreed, privacy_acknowledged, adult_confirmed)):
         store.set_setting(LEGAL_VERSION_SETTING, LEGAL_VERSION)
         store.set_setting("legal_accepted_at", datetime.now().astimezone().isoformat())
+        store.set_setting("adult_age_self_attested", "true")
         st.rerun()
 
 
@@ -317,7 +320,10 @@ def render_planner(rows: list[dict], colors: dict[str, str], store: TaskStore) -
 
 def main() -> None:
     store = TaskStore(DB_PATH)
-    if store.get_setting(LEGAL_VERSION_SETTING) != LEGAL_VERSION:
+    if (
+        store.get_setting(LEGAL_VERSION_SETTING) != LEGAL_VERSION
+        or store.get_setting("adult_age_self_attested") != "true"
+    ):
         apply_theme(st.session_state.get("theme", "Dark"))
         first_use_consent(store)
         st.stop()
