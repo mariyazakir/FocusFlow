@@ -74,6 +74,10 @@ class TaskStore:
                 (key, value),
             )
 
+    def delete_setting(self, key: str) -> None:
+        with self._connect() as db:
+            db.execute("DELETE FROM app_settings WHERE setting_key=?", (key,))
+
     def create(self, title: str, description: str, category: str, priority: str, due_date: str | None, estimated_minutes: int, status: str = "To do", recurring: str = "Never", permanent: bool = False) -> int:
         with self._connect() as db:
             cursor = db.execute("INSERT INTO tasks(title,description,category,priority,due_date,estimated_minutes,status,recurring,permanent) VALUES(?,?,?,?,?,?,?,?,?)", (title, description, category, priority, due_date, estimated_minutes, status, recurring, int(permanent)))

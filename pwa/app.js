@@ -2,7 +2,7 @@
   const STORAGE_KEY = "focusflow.pwa.tasks.v1";
   const THEME_KEY = "focusflow.pwa.theme.v1";
   const CONSENT_KEY = "focusflow.pwa.legal-consent.v1";
-  const LEGAL_VERSION = "2026-10-12-v2";
+  const LEGAL_VERSION = "2026-10-12-v3";
   const CATEGORIES = ["MCA", "Side Income", "BUD", "Personal"];
   const PRIORITIES = ["High", "Medium", "Low"];
   const STATUSES = ["To do", "In progress", "Done"];
@@ -167,12 +167,13 @@
   window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();window.installPrompt=event;["#installButton","#installMobile"].forEach(selector=>{const button=document.querySelector(selector);if(button)button.hidden=false})});
   if("serviceWorker" in navigator && (location.protocol==="https:"||location.hostname==="localhost"))navigator.serviceWorker.register("/sw.js").catch(()=>{});
   ["#installButton","#installMobile"].forEach(selector=>{const button=document.querySelector(selector);if(button)button.onclick=async()=>{if(window.installPrompt){window.installPrompt.prompt();await window.installPrompt.userChoice;window.installPrompt=null;["#installButton","#installMobile"].forEach(id=>{const el=document.querySelector(id);if(el)el.hidden=true})}else showToast("Use your browser menu and choose Add to Home Screen.")}});
-  const consentDialog=document.querySelector("#consentDialog"),termsConsent=document.querySelector("#termsConsent"),privacyConsent=document.querySelector("#privacyConsent"),adultConsent=document.querySelector("#adultConsent"),acceptConsent=document.querySelector("#acceptConsent");
-  const refreshConsentButton=()=>{acceptConsent.disabled=!window.FocusFlowLegal.canContinue(termsConsent.checked,privacyConsent.checked,adultConsent.checked)};
-  [termsConsent,privacyConsent,adultConsent].forEach(input=>input.addEventListener("change",refreshConsentButton));
-  acceptConsent.addEventListener("click",()=>{if(acceptConsent.disabled)return;localStorage.setItem(CONSENT_KEY,JSON.stringify({version:LEGAL_VERSION,acceptedAt:new Date().toISOString(),adultAttested:true}));appState.tasks=loadTasks();consentDialog.close();render()});
+  const consentDialog=document.querySelector("#consentDialog"),termsConsent=document.querySelector("#termsConsent"),privacyConsent=document.querySelector("#privacyConsent"),acceptConsent=document.querySelector("#acceptConsent");
+  const refreshConsentButton=()=>{acceptConsent.disabled=!window.FocusFlowLegal.canContinue(termsConsent.checked,privacyConsent.checked)};
+  [termsConsent,privacyConsent].forEach(input=>input.addEventListener("change",refreshConsentButton));
+  acceptConsent.addEventListener("click",()=>{if(acceptConsent.disabled)return;localStorage.setItem(CONSENT_KEY,JSON.stringify({version:LEGAL_VERSION,acceptedAt:new Date().toISOString()}));appState.tasks=loadTasks();consentDialog.close();render()});
   consentDialog.addEventListener("cancel",event=>event.preventDefault());
   let previousConsent=null;try{previousConsent=JSON.parse(localStorage.getItem(CONSENT_KEY)||"null")}catch{}
-  if(previousConsent?.version!==LEGAL_VERSION||previousConsent?.adultAttested!==true)consentDialog.showModal();
+  if(previousConsent&&Object.prototype.hasOwnProperty.call(previousConsent,"adultAttested")){delete previousConsent.adultAttested;localStorage.setItem(CONSENT_KEY,JSON.stringify(previousConsent))}
+  if(previousConsent?.version!==LEGAL_VERSION)consentDialog.showModal();
   else{appState.tasks=loadTasks();render()}
 })();

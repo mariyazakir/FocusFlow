@@ -14,7 +14,7 @@ A free, local-first task planner for college assignments, side-income work, BUD 
 - Monthly calendar, local due/overdue reminders, and an offline day planner ranked by priority and deadline
 - Local starter checklists for breaking tasks into steps (no AI account or paid API)
 - Responsive layouts for desktop, tablet, and phone-sized screens
-- First-use Terms of Use / Privacy Policy agreement and 18+ self-attestation gate
+- First-use Terms of Use / Privacy Policy agreement; no age or guardian-verification gate
 
 ## Public installable web edition
 
@@ -60,7 +60,7 @@ With the virtual environment active, run:
 py -m unittest discover -s tests -v
 ```
 
-The PWA age/consent helper can also be checked with Node.js:
+The PWA policy-consent helper can also be checked with Node.js:
 
 ```powershell
 node --test pwa/test_legal_consent.cjs
@@ -76,6 +76,4 @@ Permanent daily tasks reset to **To do** when FocusFlow is opened on a new day. 
 
 ## Legal pages and first-use agreement
 
-The Terms of Use and Privacy Policy are in `TERMS_OF_USE.md` and `PRIVACY_POLICY.md`. Both are shown in a required first-use dialog. Acceptance, its version and timestamp, and the 18+ self-attestation are stored locally in SQLite or browser storage. A new policy version requires acceptance again. The adult checkbox is an attestation only, not age or identity verification.
-
-**Launch status:** do not deploy this release for under-18 users. FocusFlow does not yet have a verifiable parent/guardian consent system. Under-18 access must remain unavailable until a suitable verification service and consent flow are implemented and legally reviewed. The policy drafts should also be reviewed by qualified counsel before public launch. No policy can guarantee immunity from legal responsibility. The Python/SQLite edition is designed for local, single-device use; Vercel serves only the separate static PWA.
+The Terms of Use and Privacy Policy are in `TERMS_OF_USE.md` and `PRIVACY_POLICY.md`. Both are shown in a required first-use dialog. Acceptance, its version and timestamp are stored locally in SQLite or browser storage. A new policy version requires acceptance again. FocusFlow does not ask age or verify a parent/guardian; see the policy for the data-storage details and legal-review note. No policy can guarantee immunity from legal responsibility. The Python/SQLite edition is designed for local, single-device use; Vercel serves only the separate static PWA.

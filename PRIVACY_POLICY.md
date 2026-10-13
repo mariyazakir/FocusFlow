@@ -15,8 +15,8 @@ Tasks can contain titles, notes, categories, priorities, due dates, estimated fo
 
 ### Local application data
 
-- **Python/Streamlit edition:** task information and permanent-task completion history are stored in the local `focusflow.db` SQLite file beside the application. The policy version, acceptance time, and adult age self-attestation are also stored locally in that database. The app does not send task information to a FocusFlow server or cloud database.
-- **Installable web edition:** task information and theme preference are stored in the current browser’s local storage. The policy version, acceptance time, and adult age self-attestation are stored there as well. The service worker caches static app files so the app shell can work offline after a visit. App code does not send task content to the operator or synchronize it to another device.
+- **Python/Streamlit edition:** task information and permanent-task completion history are stored in the local `focusflow.db` SQLite file beside the application. The policy version and acceptance time are also stored locally in that database. The app does not send task information to a FocusFlow server or cloud database.
+- **Installable web edition:** task information and theme preference are stored in the current browser’s local storage. The policy version and acceptance time are stored there as well. The service worker caches static app files so the app shell can work offline after a visit. App code does not send task content to the operator or synchronize it to another device.
 - **Backups:** exporting creates a file on your device; importing reads the file in your browser. You control where you save or share that file. Backups contain task data, not a server-side account.
 
 ### Basic connection information for the hosted edition
@@ -45,7 +45,9 @@ Local storage means task-data security depends substantially on your device, bro
 
 ## Children and age eligibility
 
-This release is for people aged 18 or older. The app asks users to confirm that they are at least 18 before they can continue. This is a self-attestation only: it does not verify age, identity, parenthood, or guardian consent, and a person could misstate it. FocusFlow does not currently collect a child’s personal data intentionally and does not offer access to children, even with a parent’s permission. A verifiable guardian-consent process has not been built. Under-18 access and public launch for children must remain disabled until such a process is implemented and reviewed. Do not use this app as a parental-consent verification service.
+FocusFlow does not ask users for their age and does not provide age checks or parental/guardian verification. Users of any age can use the app. Task content is stored on the user's device, but a user may choose to enter personal details in task titles or notes; avoid entering identifying or sensitive information, especially for children. The app does not collect a child's age or guardian details, and its first-use policy acknowledgement is not a parental-consent verification system.
+
+Legal requirements for children's personal data depend on where the app is used and may apply even when an app is free or stores content locally. In India, the government has scheduled the main DPDP Act provisions, including section 9 on children's data, to take effect 18 months after the 13 November 2025 commencement notification (13 May 2027). This schedule is not a legal determination that FocusFlow is exempt; the operator must reassess the app and its hosting/data flows before those provisions take effect and wherever else it is offered. [Official commencement notification](https://www.meity.gov.in/static/uploads/2025/11/c56ceae6c383460ca69577428d36828b.pdf).
 
 ## Changes and contact
 

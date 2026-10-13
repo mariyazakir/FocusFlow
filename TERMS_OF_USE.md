@@ -21,7 +21,7 @@ Use the Service lawfully and do not attempt to disrupt it, bypass its controls, 
 
 ## 3. Age and eligibility
 
-This release is for people who are at least 18 years old. If you are under 18, do not use the Service, even if a parent or guardian gives permission. FocusFlow does not yet have a system to verify a parent’s or lawful guardian’s identity and consent. The age confirmation shown by the app is a self-attestation only; it does not verify age or guardian consent. Under-18 access will remain unavailable until a suitable verification process is implemented and reviewed for the places where FocusFlow is offered.
+FocusFlow does not impose a minimum age, ask for a user's age, or verify a parent or guardian. People of any age may access the app, subject to applicable law and these Terms. Younger users should ask a parent, guardian, or trusted adult for help understanding online privacy and should avoid entering identifying or sensitive information. This app does not provide a parental-consent or age-verification service.
 
 ## 4. Availability, changes, and your data
 
@@ -45,4 +45,4 @@ These Terms are governed by the laws of India. Courts of competent jurisdiction 
 
 ---
 
-These Terms are a general draft, not legal advice. They cannot guarantee that the operator will never be legally responsible. Obtain legal review before public release, especially before enabling use by anyone under 18.
+These Terms are a general draft, not legal advice. They cannot guarantee that the operator will never be legally responsible. Privacy and child-protection rules vary by location and can change; the operator should review requirements before offering the Service in a jurisdiction and as those rules take effect.
