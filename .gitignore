@@ -5,3 +5,12 @@ focusflow.db
 focusflow-backup.json
 tests/test-*.db
 .streamlit/secrets.toml
+# Local credentials and database files
+.env
+.env.*
+!.env.example
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+.vercel/

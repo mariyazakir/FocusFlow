@@ -1,3 +1,6 @@
-streamlit>=1.48,<2.0
+streamlit>=1.66.1,<2.0
 pandas>=2.2,<3.0
 plotly>=5.24,<7.0
+# Keep Streamlit's image dependency and TLS bundle on audited fixed versions.
+pillow>=13.0.0,<14.0.0
+certifi>=2026.10.19

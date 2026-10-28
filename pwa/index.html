@@ -21,7 +21,7 @@
         <button data-page="overview" class="nav-item active">⌂ <span>Overview</span></button>
         <button data-page="tasks" class="nav-item">☷ <span>My tasks</span></button>
         <button data-page="calendar" class="nav-item">▦ <span>Calendar</span></button>
-        <button data-page="planner" class="nav-item">◷ <span>Plan my day</span></button>
+        <button data-page="planner" class="nav-item">◷ <span>Plan</span></button>
         <button data-page="board" class="nav-item">▤ <span>Board</span></button>
       </nav>
       <div class="sidebar-bottom">
@@ -53,6 +53,8 @@
         <label>Priority<select name="priority"><option>Medium</option><option>High</option><option>Low</option></select></label>
         <label>Deadline<input type="date" name="due_date"></label>
         <label>Focus time (minutes)<input type="number" name="estimated_minutes" min="5" max="1440" step="5" value="45"></label>
+        <label>Start time<input type="time" name="start_time"></label>
+        <label>End time<input type="time" name="end_time"></label>
         <label>Status<select name="status"><option>To do</option><option>In progress</option><option>Done</option></select></label>
         <label>Repeat<select name="recurring"><option>Never</option><option>Daily</option><option>Weekly</option><option>Monthly</option></select></label>
       </div>
