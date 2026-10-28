@@ -1,4 +1,4 @@
-const CACHE_NAME = "focusflow-shell-v7";
+const CACHE_NAME = "focusflow-shell-v8";
 const SHELL = ["/", "/index.html", "/styles.css", "/mobile.css", "/legal.css", "/legal-consent.js", "/app.js", "/terms.html", "/privacy.html", "/manifest.webmanifest", "/icons/icon.svg", "/icons/icon-192.png", "/icons/icon-512.png"];
 
 self.addEventListener("install", event => {
